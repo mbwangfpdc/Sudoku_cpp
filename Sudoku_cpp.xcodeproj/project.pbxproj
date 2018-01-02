@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		027341F51FFC444F005CE790 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 027341F41FFC444F005CE790 /* main.cpp */; };
+		027341FD1FFC4499005CE790 /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 027341FB1FFC4499005CE790 /* Board.cpp */; };
+		027341FF1FFC44B9005CE790 /* sudoku.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 027341FE1FFC44B9005CE790 /* sudoku.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +25,9 @@
 
 /* Begin PBXFileReference section */
 		027341F11FFC444F005CE790 /* Sudoku_cpp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Sudoku_cpp; sourceTree = BUILT_PRODUCTS_DIR; };
-		027341F41FFC444F005CE790 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		027341FB1FFC4499005CE790 /* Board.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Board.cpp; path = Sudoku_cpp/Board.cpp; sourceTree = "<group>"; };
+		027341FC1FFC4499005CE790 /* Board.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Board.hpp; path = Sudoku_cpp/Board.hpp; sourceTree = "<group>"; };
+		027341FE1FFC44B9005CE790 /* sudoku.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = sudoku.cpp; path = Sudoku_cpp/sudoku.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +44,9 @@
 		027341E81FFC444E005CE790 = {
 			isa = PBXGroup;
 			children = (
+				027341FB1FFC4499005CE790 /* Board.cpp */,
+				027341FC1FFC4499005CE790 /* Board.hpp */,
+				027341FE1FFC44B9005CE790 /* sudoku.cpp */,
 				027341F31FFC444F005CE790 /* Sudoku_cpp */,
 				027341F21FFC444F005CE790 /* Products */,
 			);
@@ -57,7 +63,6 @@
 		027341F31FFC444F005CE790 /* Sudoku_cpp */ = {
 			isa = PBXGroup;
 			children = (
-				027341F41FFC444F005CE790 /* main.cpp */,
 			);
 			path = Sudoku_cpp;
 			sourceTree = "<group>";
@@ -119,7 +124,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				027341F51FFC444F005CE790 /* main.cpp in Sources */,
+				027341FF1FFC44B9005CE790 /* sudoku.cpp in Sources */,
+				027341FD1FFC4499005CE790 /* Board.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
