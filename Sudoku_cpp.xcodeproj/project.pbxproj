@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		027341FD1FFC4499005CE790 /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 027341FB1FFC4499005CE790 /* Board.cpp */; };
 		027341FF1FFC44B9005CE790 /* sudoku.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 027341FE1FFC44B9005CE790 /* sudoku.cpp */; };
+		0292CA351FFCA337002A999C /* Nine_set.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0292CA331FFCA337002A999C /* Nine_set.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,8 @@
 		027341FB1FFC4499005CE790 /* Board.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Board.cpp; path = Sudoku_cpp/Board.cpp; sourceTree = "<group>"; };
 		027341FC1FFC4499005CE790 /* Board.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Board.hpp; path = Sudoku_cpp/Board.hpp; sourceTree = "<group>"; };
 		027341FE1FFC44B9005CE790 /* sudoku.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = sudoku.cpp; path = Sudoku_cpp/sudoku.cpp; sourceTree = "<group>"; };
+		0292CA331FFCA337002A999C /* Nine_set.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Nine_set.cpp; path = Sudoku_cpp/Nine_set.cpp; sourceTree = "<group>"; };
+		0292CA341FFCA337002A999C /* Nine_set.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Nine_set.hpp; path = Sudoku_cpp/Nine_set.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +49,8 @@
 			children = (
 				027341FB1FFC4499005CE790 /* Board.cpp */,
 				027341FC1FFC4499005CE790 /* Board.hpp */,
+				0292CA331FFCA337002A999C /* Nine_set.cpp */,
+				0292CA341FFCA337002A999C /* Nine_set.hpp */,
 				027341FE1FFC44B9005CE790 /* sudoku.cpp */,
 				027341F31FFC444F005CE790 /* Sudoku_cpp */,
 				027341F21FFC444F005CE790 /* Products */,
@@ -125,6 +130,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				027341FF1FFC44B9005CE790 /* sudoku.cpp in Sources */,
+				0292CA351FFCA337002A999C /* Nine_set.cpp in Sources */,
 				027341FD1FFC4499005CE790 /* Board.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
