@@ -11,7 +11,13 @@ using namespace std;
 
 Nine_set::Nine_set() {
     for (int i = 0; i < 9; ++i) {
-        nums[i] = true;
+        nums[i] = false;
+    }
+}
+
+Nine_set::Nine_set(bool buul) {
+    for (int i = 0; i < 9; ++i) {
+        nums[i] = buul;
     }
 }
 
@@ -21,7 +27,7 @@ void Nine_set::elim(int i) {
 
 void Nine_set::elim(const Nine_set& other) {
     for (int i = 0; i < 9; ++i) {
-        if (other[i]) {
+        if (other.nums[i]) {
             nums[i] = false;
         }
     }
@@ -40,6 +46,6 @@ bool Nine_set::single_left() {
     return true;
 }
 
-bool Nine_set::operator[](int i) const {
+bool& Nine_set::operator[](int i) {
     return nums[i];
 }

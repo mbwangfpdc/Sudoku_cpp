@@ -14,8 +14,11 @@
 struct Nine_set {
     bool nums[9];
 public:
-    // Sets all numbers as true
+    // Sets all numbers as false
     Nine_set();
+    
+    // Sets all numbers as true or false
+    Nine_set(bool);
     
     // Takes out a number from the Nine_set
     void elim(int);
@@ -27,7 +30,7 @@ public:
     bool single_left();
     
     // Returns true if inputted number is present in this Nine_set
-    bool operator[](int) const;
+    bool& operator[](int);
 };
 
 

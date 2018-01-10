@@ -13,29 +13,29 @@
 #include <stdlib.h>
 #include <set>
 #include <string>
+#include <iostream>
 #include "Nine_set.hpp"
+#include "Square.hpp"
 
-
+struct Board {
+    Board(std::string);
     
-
-struct Square {
-    bool solved;
-    int value;
-    Nine_set remaining;
-    Square() : solved(false), value(0) {}
-};
-
-class Board {
     // Board representation as an array and series of sets
     Square data[81];
     Nine_set row_solved[9];
     Nine_set col_solved[9];
     Nine_set box_solved[9];
-public:
-    Board(std::string);
-private:
-    void update_solved();
-    void update_board_poss();
+    
+    void update_whole();
+    void update_cell(int);
+    bool solve_by_elim();
+    bool solve_by_isolation();
+    bool isolate_helper_row(int, int*);
+    bool isolate_helper_col(int, int*);
+    bool isolate_helper_box(int, int*);
+    
+    bool check_invariant();
+    bool completed();
 };
 
 
