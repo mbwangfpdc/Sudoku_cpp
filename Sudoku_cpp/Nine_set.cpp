@@ -33,17 +33,14 @@ void Nine_set::elim(const Nine_set& other) {
     }
 }
 
-bool Nine_set::single_left() {
+int Nine_set::num_left() {
     int count = 0;
     for (bool buul : nums) {
         if (buul) {
             ++count;
-            if (count == 2) {
-                return false;
-            }
         }
     }
-    return true;
+    return count;
 }
 
 bool& Nine_set::operator[](int i) {

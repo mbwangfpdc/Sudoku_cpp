@@ -10,12 +10,10 @@
 using namespace std;
 
 Board::Board(std::string str_in) {
-    for (int row = 0; row < 9; ++row) {
-        for (int col = 0; col < 9; ++col) {
-            data[row * 9 + col].value = int(str_in[row * 9 + col + row] - '0' - 1);
-            if (data[row * 9 + col].value != -1) {
-                data[row * 9 + col].solved = true;
-            }
+    for (int i = 0; i < 81; ++i) {
+        data[i].value = int(str_in[i + i / 9] - '0' - 1);
+        if (data[i].value != -1) {
+            data[i].solved = true;
         }
     }
 }
@@ -85,29 +83,23 @@ bool Board::completed() {
 }
 
 void Board::update_whole() {
-    for (int row = 0; row < 9; ++row) {
-        for (int col = 0; col < 9; ++col) {
-            // For every Square on the board, if you've solved that square
-            // update the solved data associated with that Square
-            Square& sqr = data[row * 9 + col];
-            if (sqr.solved) {
-                row_solved[row][sqr.value] = true;
-                col_solved[col][sqr.value] = true;
-                box_solved[row / 3 * 3 + col / 3][sqr.value] = true;
-            }
+    for (int i = 0; i < 81; ++i) {
+        // For every Square on the board, if you've solved that square
+        // update the solved data associated with that Square
+        Square& sqr = data[i];
+        if (sqr.solved) {
+            row_solved[i / 9][sqr.value] = true;
+            col_solved[i % 9][sqr.value] = true;
+            box_solved[i / 27 * 3 + i % 9 / 3][sqr.value] = true;
         }
     }
     // After restrictions updated use them to update possible vals for each tile
-    for (int row = 0; row < 9; ++row) {
-        for (int col = 0; col < 9; ++col) {
-            // For every Square on the board, if you've solved that square
-            // update the solved data associated with that Square
-            Square& sqr = data[row * 9 + col];
-            if (!sqr.solved) {
-                sqr.poss.elim(row_solved[row]);
-                sqr.poss.elim(col_solved[col]);
-                sqr.poss.elim(box_solved[row / 3 * 3 + col / 3]);
-            }
+    for (int i = 0; i < 81; ++i) {
+        Square& sqr = data[i];
+        if (!sqr.solved) {
+            sqr.poss.elim(row_solved[i / 9]);
+            sqr.poss.elim(col_solved[i % 9]);
+            sqr.poss.elim(box_solved[i / 27 * 3 + i % 9 / 3]);
         }
     }
 }
@@ -122,30 +114,27 @@ void Board::update_cell(int i) {
     col_solved[col][sqr.value] = true;
     box_solved[box][sqr.value] = true;
     for (int sqr = 0; sqr < 9; ++sqr) {
-        data[row * 9 + sqr].poss.elim(data[i].value);
-        data[sqr * 9 + col].poss.elim(data[i].value);
-        data[box / 3 * 27 + box % 3 * 3 + sqr / 3 * 9 + sqr % 3].poss.elim(data[i].value);
+        data[row * 9 + sqr].poss[data[i].value] = false;
+        data[sqr * 9 + col].poss[data[i].value] = false;
+        data[box / 3 * 27 + box % 3 * 3 + sqr / 3 * 9 + sqr % 3].poss[data[i].value] = false;
     }
 }
 
 bool Board::solve_by_elim() {
     bool e = false;
-    for (int row = 0; row < 9; ++row) {
-        for (int col = 0; col < 9; ++col) {
-            // For every square, check if solved by process elimination
-            Square& sqr = data[row * 9 + col];
-            if (!sqr.solved) {
-                if (sqr.poss.single_left()) {
-                    sqr.solved = true;
-                    for (int i = 0; i < 9; ++i) {
-                        if (sqr.poss[i]) {
-                            sqr.value = i;
-                            update_cell(row * 9 + col);
-                            break;
-                        }
+    for (int i = 0; i < 81; ++i) {
+        Square& sqr = data[i];
+        if (!sqr.solved) {
+            if (sqr.poss.num_left() == 1) {
+                sqr.solved = true;
+                for (int val = 0; val < 9; ++val) {
+                    if (sqr.poss[val]) {
+                        sqr.value = val;
+                        update_cell(i);
+                        break;
                     }
-                    e = true;
                 }
+                e = true;
             }
         }
     }
@@ -177,14 +166,14 @@ bool Board::solve_by_isolation() {
                 }
             }
         }
-        //isolate_helper_row(region, row_seen) ? i = true:i = i;
-        //isolate_helper_col(region, col_seen) ? i = true:i = i;
+        isolate_helper_row(region, row_seen) ? i = true:i = i;
+        isolate_helper_col(region, col_seen) ? i = true:i = i;
         isolate_helper_box(region, box_seen) ? i = true:i = i;
     }
     return i;
 }
 
-bool Board::isolate_helper_row(int row, int* seen) {
+bool Board::isolate_helper_row(int row, int seen[]) {
     bool h = false;
     // Go through seen[] and check if any numbers are localized to a square
     for (int num = 0; num < 9; ++num) {
@@ -208,7 +197,7 @@ bool Board::isolate_helper_row(int row, int* seen) {
     return h;
 }
 
-bool Board::isolate_helper_col(int col, int* seen) {
+bool Board::isolate_helper_col(int col, int seen[]) {
     bool h = false;
     // Go through seen[] and check if any numbers are localized to a square
     for (int num = 0; num < 9; ++num) {
@@ -232,7 +221,7 @@ bool Board::isolate_helper_col(int col, int* seen) {
     return h;
 }
 
-bool Board::isolate_helper_box(int box, int* seen) {
+bool Board::isolate_helper_box(int box, int seen[]) {
     bool h = false;
     // Go through seen[] and check if any numbers are localized to a square
     for (int num = 0; num < 9; ++num) {
@@ -255,4 +244,14 @@ bool Board::isolate_helper_box(int box, int* seen) {
         ++seen;
     }
     return h;
+}
+
+void Board::hypothesize() {
+    int min_poss = 10;
+    for (Square sqr : data) {
+        if (!sqr.solved && sqr.poss.num_left() < min_poss) {
+            min_poss = sqr.poss.num_left();
+            
+        }
+    }
 }
