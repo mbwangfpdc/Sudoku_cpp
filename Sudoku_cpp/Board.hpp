@@ -29,8 +29,8 @@ struct Board {
     Nine_set col_solved[9];
     Nine_set box_solved[9];
     
-    void update_whole(); // TODO: Ditch this and test, should be okay (use in ctor)
-    void update_cell(int); // TODO: Turn update_cell into solve_cell
+    // TODO: Ditch this and test, should be okay (use in ctor)
+    void solve_cell(int, int); // TODO: Turn update_cell into solve_cell
     // TODO: implement unsolve_cell (can be exact opposite of solve_cell
     bool solve_by_elim();
     bool solve_by_isolation();

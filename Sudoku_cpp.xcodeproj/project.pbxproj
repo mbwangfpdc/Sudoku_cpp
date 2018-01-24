@@ -26,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		0211BC0E200018EE006901EB /* Square.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Square.hpp; sourceTree = "<group>"; };
+		0256A1032017F81B001C110F /* Sudoku_notes.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Sudoku_notes.rtf; sourceTree = "<group>"; };
 		027341F11FFC444F005CE790 /* Sudoku_cpp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Sudoku_cpp; sourceTree = BUILT_PRODUCTS_DIR; };
 		027341FB1FFC4499005CE790 /* Board.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Board.cpp; path = Sudoku_cpp/Board.cpp; sourceTree = "<group>"; };
 		027341FC1FFC4499005CE790 /* Board.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Board.hpp; path = Sudoku_cpp/Board.hpp; sourceTree = "<group>"; };
@@ -54,6 +55,7 @@
 				0292CA331FFCA337002A999C /* Nine_set.cpp */,
 				0292CA341FFCA337002A999C /* Nine_set.hpp */,
 				027341FE1FFC44B9005CE790 /* sudoku.cpp */,
+				0256A1032017F81B001C110F /* Sudoku_notes.rtf */,
 				027341F31FFC444F005CE790 /* Sudoku_cpp */,
 				027341F21FFC444F005CE790 /* Products */,
 			);

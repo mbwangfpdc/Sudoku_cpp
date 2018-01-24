@@ -48,25 +48,12 @@ int main() {
     cout << board;
     char cmd;
     cin >> cmd;
-    bool auto_update = false;
     bool auto_check = false;
     while (cmd != 'q' && !board.completed()) {
         switch (cmd) {
-            case 'u':
-                board.update_whole();
-                cout << "Board restrictions updated" << endl;
-                break;
             case 'c':
                 board.check_invariant();
                 break;
-            case '1':
-                if (auto_update) {
-                    auto_update = false;
-                    cout << "Auto-update turned off" << endl;
-                } else {
-                    auto_update = true;
-                    cout << "Auto-update turned on" << endl;
-                }
                 break;
             case '2':
                 if (auto_check) {
@@ -98,10 +85,6 @@ int main() {
             default:
                 cout << "Invalid input" << endl << "Type 'h' for help, or 'q' to quit" << endl;
                 break;
-        }
-        if (auto_update) {
-            board.update_whole();
-            cout << "Automatically updated board" << endl;
         }
         if (auto_check) {
             board.check_invariant();
