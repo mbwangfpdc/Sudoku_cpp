@@ -12,10 +12,9 @@
 #include <stdio.h>
 
 struct Square {
-    bool solved;
     int value;
     Nine_set poss;
-    Square() : solved(false), value(0), poss(true) {}
+    Square() : value(-1), poss(true) {}
 };
 
 #endif /* Square_hpp */

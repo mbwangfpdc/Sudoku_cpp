@@ -21,8 +21,14 @@ Nine_set::Nine_set(bool buul) {
     }
 }
 
-void Nine_set::elim(int i) {
-    nums[i] = false;
+Nine_set::Nine_set(const Nine_set& other) {
+    copy(other);
+}
+
+void Nine_set::copy(const Nine_set& other) {
+    for (int i = 0; i < 9; ++i) {
+        nums[i] = other.nums[i];
+    }
 }
 
 void Nine_set::elim(const Nine_set& other) {
@@ -33,7 +39,7 @@ void Nine_set::elim(const Nine_set& other) {
     }
 }
 
-int Nine_set::num_left() {
+int Nine_set::num_left() const {
     int count = 0;
     for (bool buul : nums) {
         if (buul) {
@@ -44,5 +50,9 @@ int Nine_set::num_left() {
 }
 
 bool& Nine_set::operator[](int i) {
+    return nums[i];
+}
+
+bool Nine_set::operator[](int i) const {
     return nums[i];
 }

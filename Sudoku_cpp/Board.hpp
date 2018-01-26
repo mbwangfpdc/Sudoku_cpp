@@ -15,33 +15,35 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <array>
 #include "Nine_set.hpp"
 #include "Square.hpp"
 
 
 struct Board {
     Board(std::string);
-    std::vector<std::pair<int, Nine_set>> hypothesis;
     
     // Board representation as an array and series of sets
-    Square data[81];
+    std::array<Square, 81> data;
     Nine_set row_solved[9];
     Nine_set col_solved[9];
     Nine_set box_solved[9];
     
-    // TODO: Ditch this and test, should be okay (use in ctor)
     void solve_cell(int, int); // TODO: Turn update_cell into solve_cell
-    // TODO: implement unsolve_cell (can be exact opposite of solve_cell
+    void unsolve_cell(int);
+
     bool solve_by_elim();
-    bool solve_by_isolation();
-    bool isolate_helper_row(int, int[]);
-    bool isolate_helper_col(int, int[]);
-    bool isolate_helper_box(int, int[]);
+    int solve_by_isolation();
+    int isolate_helper_row(int, int[]);
+    int isolate_helper_col(int, int[]);
+    int isolate_helper_box(int, int[]);
+    
+    void solve_by_hypothesis(const std::array<Square, 81>&);
     
     bool check_invariant();
     bool completed();
     
-    void hypothesize();
+    void print_board();
 };
 
 
